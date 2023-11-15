@@ -15,9 +15,11 @@ public class ScenarioFour {
     public static void testScenarioFour(WebDriver driver) {
         Actions action = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        String screenShotsSavePath = "screenshots/Four/";
 
         try {
             driver.get("https://onesearch.library.northeastern.edu/discovery/search?vid=01NEU_INST:NU&lang=en");
+
 
             WebElement menuItem = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//span[contains(text(),'digital repository service')]")));
