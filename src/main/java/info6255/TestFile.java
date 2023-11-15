@@ -10,7 +10,12 @@ public class TestFile {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         WebDriver driver = new ChromeDriver(chromeOptions);
-        driver.get("https://google.com");
 
+        try {
+            driver.get("https://neuidmsso.neu.edu/idp/profile/cas/login");
+
+        } finally {
+            System.out.println("end");
+        }
     }
 }
