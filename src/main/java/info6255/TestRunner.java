@@ -33,10 +33,13 @@ public class TestRunner {
 
         //start driver:
         WebDriver driver = new ChromeDriver(chromeOptions);
+        //maximize window
+        driver.manage().window().maximize();
         //test for S1:
-        ScenarioOne.testScenarioOne(driver);
-        //test for S3:
-        ScenarioThree.testScenarioThree(driver);
+//        ScenarioOne.testScenarioOne(driver);
+//        //test for S3:
+//        ScenarioThree.testScenarioThree(driver);
+        ScenarioFour.testScenarioFour(driver);
 
         driver.quit();
         System.out.println("Finished!");
