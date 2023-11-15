@@ -21,18 +21,24 @@ public class TestRunner {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         HashMap<String, Object> chromePrefs = new HashMap<>();
+
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", downloadFilePath);
         chromePrefs.put("plugins.always_open_pdf_externally", true);
         chromeOptions.setExperimentalOption("prefs", chromePrefs);
+        chromePrefs.put("profile.default_content_settings.popups", 0);
+        chromePrefs.put("printing.print_preview_sticky_settings.appState", "{\"recentDestinations\": [{\"id\": \"Save as PDF\",\"origin\": \"local\",\"account\": \"\"}],\"selectedDestinationId\": \"Save as PDF\",\"version\": 2}");
+        chromeOptions.setExperimentalOption("prefs", chromePrefs);
+        chromeOptions.addArguments("--kiosk-printing");
 
         //start driver:
         WebDriver driver = new ChromeDriver(chromeOptions);
         //test for S1:
         ScenarioOne.testScenarioOne(driver);
-//        ScenarioThree.testScenarioThree(driver);
+        //test for S3:
+        ScenarioThree.testScenarioThree(driver);
 
-//        driver.quit();
+        driver.quit();
         System.out.println("Finished!");
 
 
