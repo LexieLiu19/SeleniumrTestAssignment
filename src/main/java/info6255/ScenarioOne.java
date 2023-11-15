@@ -12,14 +12,14 @@ import java.time.Duration;
 
 public class ScenarioOne {
 
+    public static void test() {
+        System.out.println("success");
+    }
 
     public static void testScenarioOne(WebDriver driver) {
-//        // initial set up:
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-//        WebDriver driver = new ChromeDriver(chromeOptions);
+
         // login:
-        //Please set the username and password as env variables
+        //  Set the username and password as env variables for Security:
         String userName = System.getenv("username");
         String userId = System.getenv("userId");
         String password = System.getenv("password");
@@ -73,12 +73,12 @@ public class ScenarioOne {
             WebElement pushButton;
 
             try {
-                // 重新定位元素
+                // get element:
                 pushButton = wait.until(ExpectedConditions.refreshed(
                         ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class, 'auth-button') and contains(@class, 'positive')][@type='submit']"))));
                 pushButton.click();
             } catch (StaleElementReferenceException e) {
-                // 如果捕获到异常，再次尝试定位并点击元素
+                // if any exception, re-get the element
                 pushButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//button[contains(@class, 'auth-button') and contains(@class, 'positive')][@type='submit']")));
                 pushButton.click();
@@ -91,15 +91,23 @@ public class ScenarioOne {
 
 
             //level select:
-            WebElement levelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("levl_id")));
-            Select select_level = new Select(levelSelect);
-            select_level.selectByValue("GR");
+            Select levelSelect = new Select(wait.until(ExpectedConditions.elementToBeClickable(By.id("levl_id"))));
+            System.out.println(levelSelect);
+            levelSelect.selectByValue("GR");
 
-            WebElement typeSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("type_id")));
-            Select select_type = new Select(typeSelect);
-            select_type.selectByValue("AUDI");
-            WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='submit'][value='Submit']")));
-            submitButton.click();
+
+//            WebElement levelSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("levl_id")));
+//            System.out.println(levelSelect);
+//            Select select_level = new Select(levelSelect);
+////            select_level.selectByValue("GR");
+//
+//            WebElement typeSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("type_id")));
+//            System.out.println(typeSelect);
+//            Select select_type = new Select(typeSelect);
+//            System.out.println(select_type);
+//            select_type.selectByValue("AUDI");
+//            WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='submit'][value='Submit']")));
+//            submitButton.click();
 
         } finally {
 //            driver.quit();
