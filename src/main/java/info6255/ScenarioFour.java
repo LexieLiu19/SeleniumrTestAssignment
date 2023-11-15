@@ -1,5 +1,6 @@
 package info6255;
 
+import info6255.utils.ScreenshotUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,21 +20,21 @@ public class ScenarioFour {
 
         try {
             driver.get("https://onesearch.library.northeastern.edu/discovery/search?vid=01NEU_INST:NU&lang=en");
-
+            ScreenshotUtil.takeScreenshot(driver, screenShotsSavePath + "s4-step-1.png");
 
             WebElement menuItem = wait.until(ExpectedConditions.elementToBeClickable(
                     By.xpath("//span[contains(text(),'digital repository service')]")));
             action.moveToElement(menuItem).click().perform();
 
-            System.out.println(driver.getCurrentUrl());
 
             String currentHandle = driver.getWindowHandle();
             Set<String> handles = driver.getWindowHandles();
 
+
             for (String actual : handles) {
                 if (!actual.equalsIgnoreCase(currentHandle)) {
                     driver.switchTo().window(actual);
-
+                    ScreenshotUtil.takeScreenshot(driver, screenShotsSavePath + "s4-step-2.png");
                     WebElement datasetButton = wait.until(ExpectedConditions.elementToBeClickable(
                             By.xpath("//a[@class='btn btn-clear btn-block' and @href='/datasets']")));
                     action.moveToElement(datasetButton).click().perform();
@@ -41,6 +42,7 @@ public class ScenarioFour {
                     WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(
                             By.xpath("//input[@id='searchFieldHeader' and @placeholder='Search this featured content']")));
                     searchField.sendKeys("csv");
+                    ScreenshotUtil.takeScreenshot(driver, screenShotsSavePath + "s4-step-3.png");
 
                     wait.until(ExpectedConditions.elementToBeClickable(
                             By.xpath("(//*[@id='search-submit-header'])[2]"))).click();
@@ -48,7 +50,7 @@ public class ScenarioFour {
                     WebElement searchItem = wait.until(ExpectedConditions.elementToBeClickable(
                             By.xpath("//a[contains(@href, '/files/neu:m0472768f')]")));
                     action.moveToElement(searchItem).click().perform();
-
+                    ScreenshotUtil.takeScreenshot(driver, screenShotsSavePath + "s4-step-4.png");
                     WebElement download = wait.until(ExpectedConditions.elementToBeClickable(
                             By.xpath("//a[contains(text(),'Zip File')]")));
                     action.moveToElement(download).click().perform();
