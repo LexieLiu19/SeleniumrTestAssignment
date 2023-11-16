@@ -1,4 +1,4 @@
-./screenshots/
-.idea
-./downloadPDF/
-.DS_Store
+screenshots/
+.idea/
+downloadPDF/
+*.DS_Store

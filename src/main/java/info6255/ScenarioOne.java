@@ -47,7 +47,6 @@ public class ScenarioOne {
             duoElement.click();
             ScreenshotUtil.takeScreenshot(driver, scenarioOneScreenshotPath + "step-4.png");
             //stay signed in
-
             longWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("idSIButton9"))).click();
 
 

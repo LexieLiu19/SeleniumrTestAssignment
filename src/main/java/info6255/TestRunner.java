@@ -39,9 +39,10 @@ public class TestRunner {
 //        ScenarioOne.testScenarioOne(driver);
 //        //test for S3:
 //        ScenarioThree.testScenarioThree(driver);
-        ScenarioFour.testScenarioFour(driver);
+//        ScenarioFour.testScenarioFour(driver);
+        ScenarioTwo.testScenarioTwo(driver);
 
-        driver.quit();
+//        driver.quit();
         System.out.println("Finished!");
 
 
